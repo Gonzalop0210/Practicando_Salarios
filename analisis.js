@@ -1,7 +1,3 @@
-/* console.log(salarios[0]); */
-
-/* let personaBuscada = "Julia"; */
-
 function encontrarMedianaSalarial(personaBuscada) {
     let seEncontro = false;
     for (let i = 0; i < salarios.length; i++) {
@@ -33,13 +29,6 @@ function encontrarMedianaSalarial(personaBuscada) {
     }
 }
 
-/* console.log(encontrarMedianaSalarial("Juanita")); */
-
-/* 
-Proyeccion = Salaria Actual * (Tasa Crecimiento) ** años proyectados
-Tasa Crecimiento = (sueldo inicial / sueldo final) ** (1 / diferencia de años trabajados) - 1
-*/
-
 function proyeccionSalarial(personaBuscada) {
     let encontrado = false;
     for (let element of salarios) {
@@ -70,6 +59,29 @@ function proyeccionSalarial(personaBuscada) {
     }
 }
 
-let persona = "Rigoberto";
-console.log(proyeccionSalarial(persona));
-/* console.log(encontrarMedianaSalarial(persona)); */
+/* Primera forma de ordenar por empresa */
+function ordenadoPorEmpresa(empresa) {
+    let arrayEmpresas = [];
+    for (let element of salarios) {
+        let arrayTrabajos = element.trabajos;
+        let encontrado = false;
+        let arrayPersonalPorEmpleado = {};
+        let arrayEmpresaPorEmpleado = [];
+        for (let prop of arrayTrabajos) {
+            if (encontrado == false) {
+                arrayPersonalPorEmpleado.name = element.name;
+                encontrado = true;
+            }
+            if (prop.empresa == empresa) {
+                arrayEmpresaPorEmpleado.push(prop);
+            }
+        }
+        if (arrayEmpresaPorEmpleado.length != 0) {
+            arrayPersonalPorEmpleado.description = arrayEmpresaPorEmpleado;
+            arrayEmpresas.push(arrayPersonalPorEmpleado);
+        }
+    }
+    return arrayEmpresas;
+}
+
+/* Ordenamiento según Platzi */
