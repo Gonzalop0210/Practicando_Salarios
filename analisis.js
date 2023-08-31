@@ -85,3 +85,16 @@ function ordenadoPorEmpresa(empresa) {
 }
 
 /* Ordenamiento según Platzi */
+console.log(salarios[0].trabajos);
+function ordenarPorEmpresaPlatzi(empresa) {
+    for (let element of salarios) {
+        let arrayTrabajos = element.trabajos;
+        let empresaEncontrada = false;
+        for (let propiedad of arrayTrabajos) {
+            if (propiedad.empresa == empresa && empresaEncontrada == false) {
+                console.log(propiedad.empresa);
+                empresaEncontrada = true;
+            }
+        }
+    }
+}
