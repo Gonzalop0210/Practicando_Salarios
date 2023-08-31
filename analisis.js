@@ -41,6 +41,7 @@ Tasa Crecimiento = (sueldo inicial / sueldo final) ** (1 / diferencia de años t
 */
 
 function proyeccionSalarial(personaBuscada) {
+    let encontrado = false;
     for (let element of salarios) {
         let arrayTrabajos = element.trabajos;
         if (element.name == personaBuscada) {
@@ -59,11 +60,16 @@ function proyeccionSalarial(personaBuscada) {
                 ultimoSalario = prop.salario;
             }
             let proyeccionSalarial =ultimoSalario + (ultimoSalario * (promedioTasasCrecimiento / 100));
+            encontrado = true;
             return "La proyección salarial para el próximo año de " + element.name + " es: " + Math.round(proyeccionSalarial);
         }
+    }
+
+    if (!encontrado) {
+        return "Empleado no encontrado";
     }
 }
 
 let persona = "Rigoberto";
 console.log(proyeccionSalarial(persona));
-console.log(encontrarMedianaSalarial(persona));
+/* console.log(encontrarMedianaSalarial(persona)); */
