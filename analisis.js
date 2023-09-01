@@ -85,7 +85,25 @@ function ordenadoPorEmpresa(empresa) {
 }
 
 /* Ordenamiento según Platzi */
-console.log(salarios[0].trabajos);
 function ordenarPorEmpresaPlatzi(empresa) {
-    
+    let objetoEmpresa = {
+        /* 
+        2018: 250, 250, 250
+        */
+    };
+    for (let element of salarios) {
+        let arrayTrabajos = element.trabajos;
+        let empresaEncontrada = false;
+        for (let prop of arrayTrabajos) {
+            if (prop.empresa == empresa && empresaEncontrada == false) {
+                if (prop.year in objetoEmpresa) { /* en éste código preguntamos si prop.year existe en el objetoEmpresa */
+                    objetoEmpresa[prop.year] += ', ' + prop.salario;
+                } else {
+                    objetoEmpresa[prop.year] = prop.salario;
+                    /* empresaEncontrada = true; */
+                }
+            };
+        };
+    };
+    console.log(objetoEmpresa);
 };
