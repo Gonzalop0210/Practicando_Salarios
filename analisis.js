@@ -85,21 +85,20 @@ function ordenadoPorEmpresa(empresa) {
 }
 
 /* Ordenamiento según Platzi */
-function ordenarPorEmpresaPlatzi() {
-    let objetoEmpresas = {
-        /* Freelance: {
-            2018: [250,550],
-            2019: [100,100]
-        } */
-    };
-    let arrayYear = []
+/* function ordenarPorEmpresaPlatzi() { */
+    let objetoEmpresas = {};
     for (let element of salarios) {
         let arrayTrabajos = element.trabajos;
         for (let prop of arrayTrabajos) {
-            if (prop.year == 2018) {
-                arrayYear.push(prop.salario);
-            }
-        }
+            prop.empresa = {};
+            if (!prop.empresa[prop.year]) {
+                prop.empresa[prop.year] = [prop.salario];
+            } else {
+                prop.empresa[prop.year].push(prop.salario);
+            };
+
+            
+        };
     };
-    console.log(arrayYear);
-};
+    console.log(objetoEmpresas);
+/* }; */
