@@ -123,3 +123,36 @@ function medianaPorYearporEmpresa(empresa, year) {
 };
 
 console.log(objetoEmpresas);
+
+function proyeccionSalarialEmpresa(empresa) {
+    let arrayPromedioSalarioAnuales = [];
+    let porcentajeEntreYearAndYear = [];
+    if (!objetoEmpresas[empresa]) {
+        console.warn("La empresa que está buscando no existe");
+    } else {
+        for (let year in objetoEmpresas[empresa]) {
+            let arraySalarios = objetoEmpresas[empresa][year];
+            let sumaSalarios = arraySalarios.reduce((acum, actual) => acum + actual, 0);
+            let promedioSalarios = sumaSalarios / arraySalarios.length;
+            arrayPromedioSalarioAnuales.push(Math.round(promedioSalarios));
+        };
+    };
+    for (let i = 1; i < arrayPromedioSalarioAnuales.length; i++) {
+        let valorPasado = arrayPromedioSalarioAnuales[i-1];
+        let valor = arrayPromedioSalarioAnuales[i];
+
+        let tasaCrecimiento = ((valor - valorPasado) / valorPasado);
+        let tasaCrecimientoAgregar = parseFloat(tasaCrecimiento.toFixed(2));
+        porcentajeEntreYearAndYear.push(tasaCrecimientoAgregar);
+    };
+    let sumaPorcentajes = porcentajeEntreYearAndYear.reduce((acum, valor) => acum + valor, 0);
+    let promedioPorcentajes = sumaPorcentajes / porcentajeEntreYearAndYear.length;
+    let tasaAumento = parseFloat(promedioPorcentajes.toFixed(2));
+    /* Proyección Salarial = Salario Actual + (Salario Actual * Tasa de Aumento) */
+    let ultimoSalario = 0;
+    for (let sal of arrayPromedioSalarioAnuales) {
+        ultimoSalario = sal;
+    }
+    let proyeccionPorEmpresaAnual = ultimoSalario + (ultimoSalario * (tasaAumento));
+    return "La proyección para el próximo año es de: " + Math.round(proyeccionPorEmpresaAnual);
+};
