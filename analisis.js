@@ -85,20 +85,41 @@ function ordenadoPorEmpresa(empresa) {
 }
 
 /* Ordenamiento según Platzi */
-/* function ordenarPorEmpresaPlatzi() { */
-    let objetoEmpresas = {};
-    for (let element of salarios) {
-        let arrayTrabajos = element.trabajos;
-        for (let prop of arrayTrabajos) {
-            prop.empresa = {};
-            if (!prop.empresa[prop.year]) {
-                prop.empresa[prop.year] = [prop.salario];
-            } else {
-                prop.empresa[prop.year].push(prop.salario);
-            };
+let objetoEmpresas = {};
+for (let persona of salarios) {
+    for (let trabajo of persona.trabajos) {
+        if (!objetoEmpresas[trabajo.empresa]) {
+            objetoEmpresas[trabajo.empresa] = {};
+        };
+        if (!objetoEmpresas[trabajo.empresa][trabajo.year]) {
+            objetoEmpresas[trabajo.empresa][trabajo.year] = [];
+        };
+        objetoEmpresas[trabajo.empresa][trabajo.year].push(trabajo.salario);
+    };
+};
 
-            
+function medianaPorYearporEmpresa(empresa, year) {
+    /* Freelance 2021 550 */
+    if (!objetoEmpresas[empresa]) {
+        console.warn("La empresa que esta buscando no existe");
+    } else if (!objetoEmpresas[empresa][year]) {
+        const fechaActual = Date();
+        const yearActual = fechaActual.getFullYear();
+        if (year > yearActual) {
+            console.warn("Vienes del futuro o que?");
+        } else {
+            console.warn("Año inválido");
+        };
+    } else {
+        let arraySalariosEmpresas = objetoEmpresas[empresa][year];
+        if (arraySalariosEmpresas.length % 2 == 0) {
+            let md = (arraySalariosEmpresas[arraySalariosEmpresas.length / 2] + arraySalariosEmpresas[(arraySalariosEmpresas.length / 2) - 1]) / 2;
+            return md;
+        } else {
+            let mdi = arraySalariosEmpresas[Math.floor(arraySalariosEmpresas.length / 2)];
+            return mdi;
         };
     };
-    console.log(objetoEmpresas);
-/* }; */
+};
+
+console.log(objetoEmpresas);
