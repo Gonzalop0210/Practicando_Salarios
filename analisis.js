@@ -122,8 +122,6 @@ function medianaPorYearporEmpresa(empresa, year) {
     };
 };
 
-console.log(objetoEmpresas);
-
 function proyeccionSalarialEmpresa(empresa) {
     let arrayPromedioSalarioAnuales = [];
     let porcentajeEntreYearAndYear = [];
@@ -161,3 +159,22 @@ function proyeccionSalarialEmpresa(empresa) {
     TODO: Para realizar un top, lo primero que tengo que hacer es obtener todos los salarios y luego sacar los 10 salarios más altos de cada empresa.
 */
 
+/* console.log(objetoEmpresas); */
+
+function obtenerTopDiez(empresa) {
+    let empresaPersonalizada = objetoEmpresas[empresa];
+    let arrayAlmacen = [];
+    for (propiedadYear in empresaPersonalizada) {
+        let arraySalarios = empresaPersonalizada[propiedadYear];
+        for (let salarioPersonal of arraySalarios) {
+            arrayAlmacen.push(salarioPersonal);
+        };
+    };
+    arrayAlmacen.sort(function(a,b){
+        return b - a;
+    });
+
+    let numerDuplicateDelete = [...new Set(arrayAlmacen)];
+    let topDiezSalario = numerDuplicateDelete.slice(0,10);
+    console.log(topDiezSalario);
+};
