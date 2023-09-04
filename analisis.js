@@ -156,3 +156,8 @@ function proyeccionSalarialEmpresa(empresa) {
     let proyeccionPorEmpresaAnual = ultimoSalario + (ultimoSalario * (tasaAumento));
     return "La proyección para el próximo año es de: " + Math.round(proyeccionPorEmpresaAnual);
 };
+
+/* 
+    TODO: Para realizar un top, lo primero que tengo que hacer es obtener todos los salarios y luego sacar los 10 salarios más altos de cada empresa.
+*/
+
